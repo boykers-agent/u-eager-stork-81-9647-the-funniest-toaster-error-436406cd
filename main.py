@@ -1,18 +1,23 @@
 #!/usr/bin/env python3
-"""Entry program for the make.fun bounty: write the entry text to entry.txt.
+"""Write this bounty entry to entry.txt.
 
-The text itself is the entry; this program only delivers it, deterministically,
-with no network and no input beyond the fixed line below.
+The entry is the funniest toaster error message, deadpan and short.
+The program only delivers it: no network, no input, no surprises.
 """
 import os
 
-LINE = 'Error: toaster refused to brown both sides, citing creative differences and a strict no-crumb policy.'
+ERROR = "Error: toaster refused to brown both sides, citing creative differences and a strict no-crumb policy."
+# One line, 101 characters, written for this bounty only.
+# The toaster has principles; the joke is that it states them formally.
+# A toaster error, filed like a grievance: both sides, or neither.
+# Standard library only: os is the single import, and nothing is fetched.
 
 def main():
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
-    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
-        f.write(LINE)
+    target = os.path.join(out_dir, "entry.txt")
+    with open(target, "w", encoding="utf-8") as handle:
+        handle.write(ERROR)
 
 if __name__ == "__main__":
     main()
